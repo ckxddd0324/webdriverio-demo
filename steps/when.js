@@ -3,6 +3,8 @@ import { When } from 'cucumber';
 import HomePage from '../pages/HomePage';
 import SearchResulePage from '../pages/SearchResultPage';
 import DailyDealPage from '../pages/DailyDealPage';
+import ItemDetailPage from '../pages/ItemDetailPage';
+
 
 //Home page
 When(    
@@ -18,6 +20,14 @@ When(
     async function() {
         const homePage = new HomePage(this.driver);
         homePage.submitBtn.click();
+    }
+)
+
+When(    
+    /^Click cart button on top nav$/,
+    async function() {
+        const homePage = new HomePage(this.driver);
+        homePage.goToCartBtn.click();
     }
 )
 
@@ -73,3 +83,18 @@ When(
 )
 
 //Item Detail page
+When(
+    /^Add item to the cart$/,
+    async function() {
+        const itemDetailPage = new ItemDetailPage(this.driver);
+        itemDetailPage.addToCartBtn.click();
+    }
+)
+
+When(
+    /^Click go to cart button$/,
+    async function() {
+        const itemDetailPage = new ItemDetailPage(this.driver);
+        itemDetailPage.goToCartBtn.click();
+    }
+)

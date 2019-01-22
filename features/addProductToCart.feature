@@ -1,7 +1,8 @@
-Feature: Home page search input
+Feature: Add product to cart
     As a customer
     I go to the ebay homepage 
-    Enter text to the seach text field 
+    Enter text to the seach text field and search for an item
+    Then add a random item to the my cart
 
     Background:
         Given User opens the site
@@ -18,7 +19,12 @@ Feature: Home page search input
         When Update the view if the view is not list-view
         And Click the 1st item from the result page
         Then User expected item detail page
-        
+        When Add item to the cart
+        Then User expected success added item modal
+        When Click go to cart button
+        Then User expected to be on shopping cart page
+        And User expected there is an item added to the cart
+
     Examples: 
         | Search text   | 
         | LEGO Star Wars Set Death Star Troopers 75034 |

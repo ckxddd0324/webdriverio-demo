@@ -5,6 +5,8 @@ import HomePage from '../pages/HomePage';
 import SearchResulePage from '../pages/SearchResultPage';
 import DailyDealPage from '../pages/DailyDealPage';
 import ItemDetailPage from '../pages/ItemDetailPage';
+import MyCartPage from '../pages/MyCartPage';
+
 
 //util
 Then(
@@ -77,5 +79,59 @@ Then(
     async function() {
         const itemDetailPage = new ItemDetailPage(this.driver);
         itemDetailPage.waitForItemDetailPage();
+    }
+)
+
+Then(
+    /^User expected success added item modal$/,
+    async function() {
+        const itemDetailPage = new ItemDetailPage(this.driver);
+        itemDetailPage.waitForAddedItemModal();
+        itemDetailPage.addedItemModal.isVisible();
+    }
+)
+
+// Then(
+//     /^User expected success added item modal$/,
+//     async function() {
+//         const itemDetailPage = new ItemDetailPage(this.driver);
+//         itemDetailPage.waitForAddedItemModal();
+//         itemDetailPage.addedItemModal.isVisible();
+//     }
+// )
+
+//My Cart page
+Then(
+    /^User expected to be on shopping cart page$/,
+    async function() {
+        const myCartPage = new MyCartPage(this.driver);
+        myCartPage.waitForTitleExist();
+        expect(myCartPage.mainTitle.getText().search("Shopping cart")).to.be.at.least(0);
+    }
+)
+
+Then(
+    /^User expected there is an item added to the cart$/,
+    async function() {
+        const myCartPage = new MyCartPage(this.driver);
+        expect(myCartPage.addedItem.isVisible()).to.be.true;
+    }
+)
+
+Then(
+    /^User expected the empty state message on cart page$/,
+    async function() {
+        const myCartPage = new MyCartPage(this.driver);
+        expect(`You don't have any items in your cart.`).to.be.equal(myCartPage.emptyMessage.getText());
+    }
+)
+
+Then(
+    /^User expected to see two CTA button$/,
+    async function() {
+        const myCartPage = new MyCartPage(this.driver);
+        expect(myCartPage.signInBtn.isVisible()).to.be.true;
+        expect(myCartPage.startShoppingBtn.isVisible()).to.be.true;
+
     }
 )

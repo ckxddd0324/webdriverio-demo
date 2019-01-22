@@ -7,6 +7,7 @@ class Homepage extends Page {
 	get dailyDealLink() { return $('#gh-p-1') }
 	get carouselContent() { return $('.hl-color-block-banner__content') }
 	get categoryLink() { return $$('.hl-cat-nav__js-tab').map((input) => new CategoryLink(input)) }
+	get goToCartBtn() { return $(`#gh-cart`) }
 
 	enterSearchText(text) {
 		this.searchInput.setValue(text);
