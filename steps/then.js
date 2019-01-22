@@ -4,6 +4,7 @@ import { URL } from 'url';
 import HomePage from '../pages/HomePage';
 import SearchResulePage from '../pages/SearchResultPage';
 import DailyDealPage from '../pages/DailyDealPage';
+import ItemDetailPage from '../pages/ItemDetailPage';
 
 //util
 Then(
@@ -67,5 +68,14 @@ Then(
     async function() {
         const dailyDealPage = new DailyDealPage(this.driver);
         console.log(browser.isVisible(dailyDealPage.hoverMenu.selector))
+    }
+)
+
+//Item detail page
+Then(
+    /^User expected item detail page$/,
+    async function() {
+        const itemDetailPage = new ItemDetailPage(this.driver);
+        itemDetailPage.waitForItemDetailPage();
     }
 )

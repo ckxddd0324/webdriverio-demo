@@ -1,10 +1,12 @@
-import Page from "./Page.js";
+import Page from "./Page";
+import CategoryLink from "./components/CategoryLink.component";
 
 class Homepage extends Page {
 	get searchInput() { return $('#gh-ac') }
 	get submitBtn() { return $('#gh-btn') }
 	get dailyDealLink() { return $('#gh-p-1') }
 	get carouselContent() { return $('.hl-color-block-banner__content') }
+	get categoryLink() { return $$('.hl-cat-nav__js-tab').map((input) => new CategoryLink(input)) }
 
 	enterSearchText(text) {
 		this.searchInput.setValue(text);

@@ -14,6 +14,7 @@ Feature: Home page search input
         #check if the search string persists in the search text field
         And User expected to see all 4 sale types
         And User expected to see "All Listings" sale type is selected
+        
 
     Examples: 
         | Search text   | 

@@ -1,8 +1,10 @@
 import { When } from 'cucumber';
 
 import HomePage from '../pages/HomePage';
+import SearchResulePage from '../pages/SearchResultPage';
 import DailyDealPage from '../pages/DailyDealPage';
 
+//Home page
 When(    
     /^Enter the search text "([^"]*)?" to the search input field$/,
     async function(text) {
@@ -27,6 +29,30 @@ When(
     }
 )
 
+//Search Result page
+
+When(
+    /^Update the view if the view is not list-view$/,
+    async function() {
+        const searchResultPage = new SearchResulePage(this.driver);
+        const currentView = searchResultPage.getCurrentViewStyle();
+        if(currentView !== 'list-view') {
+            console.log(searchResultPage.viewToggle)
+            browser.moveToObject(searchResultPage.viewToggle.selector);
+            searchResultPage.SwitichViewButton.click();
+        }
+    }
+)
+
+When(
+    /^Click the 1st item from the result page$/,
+    async function() {
+        const searchResultPage = new SearchResulePage(this.driver);
+        searchResultPage.firstItemFromResult.click();
+    }
+    
+)
+// Daily deal page
 When(    
     /^Click the home icon$/,
     async function() {
@@ -45,3 +71,5 @@ When(
         browser.moveToObject(`${selectToHover.element.selector}:nth-of-type(${selectToHover.element.index+1})`)
     }
 )
+
+//Item Detail page
